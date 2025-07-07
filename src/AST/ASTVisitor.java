@@ -1,7 +1,6 @@
 package ast;
 
 public interface ASTVisitor<T> {
-    // Program
     T visit(RootNode node);
     
     // Declarations

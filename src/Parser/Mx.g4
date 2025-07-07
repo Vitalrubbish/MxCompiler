@@ -4,13 +4,15 @@ program: (classDef|function|statement)+ EOF ;
 
 varDef:
 
-    type Identifier ('=' expression)? ';' ;
+    type Identifier ('=' expression)? (',' type Identifier ('=' expression)?)* ';' ;
 
 classDef:
 
     'class' Identifier '{' ( varDef | function )* '}' ';' ;
 
 parameterList : type Identifier (',' type Identifier)* ;
+
+argList : Identifier (',' Identifier)* ;
 
 function
 
@@ -24,7 +26,7 @@ suite: '{' statement* '}' ;
 
 statement
 
-    : suite                                                        #block
+    : suite                                                        #blockStmt
 
     | varDef                                                       #varDefStmt
 
@@ -68,91 +70,91 @@ expression
 
     | expression '?' expression ':' expression                         #ternaryExpr
 
-    | expression '||' expression                                       #lorExpr
+    | expression '||' expression                                       #binaryExpr
 
-    | expression '&&' expression                                       #landExpr
+    | expression '&&' expression                                       #binaryExpr
 
-    | expression '|' expression                                        #orExpr
+    | expression '|' expression                                        #binaryExpr
 
-    | expression '^' expression                                        #xorExpr
+    | expression '^' expression                                        #binaryExpr
 
-    | expression '&' expression                                        #andExpr
+    | expression '&' expression                                        #binaryExpr
 
-    | expression Equal expression                                      #equalExpr
+    | expression '==' expression                                       #binaryExpr
 
-    | expression NotEqual expression                                   #notEqualExpr
+    | expression '!=' expression                                       #binaryExpr
 
-    | expression '<' expression                                        #lessExpr
+    | expression '<' expression                                        #binaryExpr
 
-    | expression '>' expression                                        #greaterExpr
+    | expression '>' expression                                        #binaryExpr
 
-    | expression '<=' expression                                       #leqslantExpr
+    | expression '<=' expression                                       #binaryExpr
 
-    | expression '>=' expression                                       #geqslantExpr
+    | expression '>=' expression                                       #binaryExpr
 
-    | expression '<<' expression                                       #shiftLeftExpr
+    | expression '<<' expression                                       #binaryExpr
 
-    | expression '>>' expression                                       #shiftRightExpr
+    | expression '>>' expression                                       #binaryExpr
 
-    | expression '+' expression                                        #addExpr
+    | expression '+' expression                                        #binaryExpr
 
-    | expression '-' expression                                        #subExpr
+    | expression '-' expression                                        #binaryExpr
 
-    | expression '*' expression                                        #mulExpr
+    | expression '*' expression                                        #binaryExpr
 
-    | expression '/' expression                                        #divExpr
+    | expression '/' expression                                        #binaryExpr
 
-    | expression '%' expression                                        #modExpr
+    | expression '%' expression                                        #binaryExpr
 
-    | '++' expression                                                 #preIncExpr
+    | '++' expression                                                  #unaryExpr
 
-    | '--' expression                                                 #preDecExpr
+    | '--' expression                                                  #unaryExpr
 
-    | '!' expression                                                  #lnotExpr
+    | '!' expression                                                   #unaryExpr
 
-    | '~' expression                                                  #notExpr
+    | '~' expression                                                   #unaryExpr
 
-    | '-' expression                                                  #negExpr
+    | '-' expression                                                   #unaryExpr
 
-    | expression '++'                                                 #postIncExpr
+    | expression '++'                                                  #unaryExpr
 
-    | expression '--'                                                 #postDecExpr
+    | expression '--'                                                  #unaryExpr
 
-    | expression '[' expression ']'                                   #arrayAccess
+    | expression '[' expression ']'                                    #arrayAccess
 
-    | expression '.' Identifier                                       #memberAccess
+    | expression '.' Identifier                                        #memberAccess
 
-    | expression '.' 'size' '(' ')'                                   #arraySizeMethod
+    | expression '.' 'size' '(' ')'                                    #arraySizeMethod
 
-    | expression '.' 'length' '(' ')'                                 #stringLengthMethod
+    | expression '.' 'length' '(' ')'                                  #stringLengthMethod
 
-    | expression '.' 'substring' '(' expression ',' expression ')'    #stringSubstringMethod
+    | expression '.' 'substring' '(' expression ',' expression ')'     #stringSubstringMethod
 
-    | expression '.' 'parseInt' '(' ')'                               #stringParseIntMethod
+    | expression '.' 'parseInt' '(' ')'                                #stringParseIntMethod
 
-    | expression '.' 'ord' '(' expression ')'                         #stringOrdMethod
+    | expression '.' 'ord' '(' expression ')'                          #stringOrdMethod
 
-    | expression '(' parameterList? ')'                               #funcCall
+    | expression '(' argList? ')'                                #funcCall
 
-    | 'new' creator                                                   #newExpr
+    | 'new' creator                                                    #newExpr
 
-    | arrayLiteral                                                    #arrayLiteralExpr
+    | arrayLiteral                                                     #arrayLiteralExpr
 
-    | '(' expression ')'                                              #parenExpr
+    | '(' expression ')'                                               #parenExpr
 
-    | 'this'                                                          #thisExpr
+    | 'this'                                                           #thisExpr
 
-    | Identifier                                                      #identifierExpr
+    | Identifier                                                       #identifierExpr
 
-    | DecimalInteger                                                  #intLiteral
+    | DecimalInteger                                                   #intLiteral
 
-    | StringLiteral                                                   #stringLiteral
+    | StringLiteral                                                    #stringLiteral
 
-    | 'true'                                                          #trueLiteral
+    | 'true'                                                           #trueLiteral
 
-    | 'false'                                                         #falseLiteral
+    | 'false'                                                          #falseLiteral
 
-    | 'null'                                                          #nullLiteral
+    | 'null'                                                           #nullLiteral
 
     ;
 
