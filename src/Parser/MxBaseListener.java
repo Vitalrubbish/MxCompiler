@@ -1,4 +1,4 @@
-// Generated from Mx.g4 by ANTLR 4.7.2
+// Generated from ./src/Parser/Mx.g4 by ANTLR 4.7.2
 package parser;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -23,6 +23,18 @@ public class MxBaseListener implements MxListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitProgram(MxParser.ProgramContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSingleVarDef(MxParser.SingleVarDefContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSingleVarDef(MxParser.SingleVarDefContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -232,61 +244,25 @@ public class MxBaseListener implements MxListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIntType(MxParser.IntTypeContext ctx) { }
+	@Override public void enterBasicType(MxParser.BasicTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitIntType(MxParser.IntTypeContext ctx) { }
+	@Override public void exitBasicType(MxParser.BasicTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBoolType(MxParser.BoolTypeContext ctx) { }
+	@Override public void enterType(MxParser.TypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBoolType(MxParser.BoolTypeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterVoidType(MxParser.VoidTypeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitVoidType(MxParser.VoidTypeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterStringType(MxParser.StringTypeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitStringType(MxParser.StringTypeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterClassType(MxParser.ClassTypeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitClassType(MxParser.ClassTypeContext ctx) { }
+	@Override public void exitType(MxParser.TypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -328,49 +304,25 @@ public class MxBaseListener implements MxListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNullLiteral(MxParser.NullLiteralContext ctx) { }
+	@Override public void enterStringLiteralExpr(MxParser.StringLiteralExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitNullLiteral(MxParser.NullLiteralContext ctx) { }
+	@Override public void exitStringLiteralExpr(MxParser.StringLiteralExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterArraySizeMethod(MxParser.ArraySizeMethodContext ctx) { }
+	@Override public void enterNullLiteralExpr(MxParser.NullLiteralExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitArraySizeMethod(MxParser.ArraySizeMethodContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterStringOrdMethod(MxParser.StringOrdMethodContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitStringOrdMethod(MxParser.StringOrdMethodContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterIntLiteral(MxParser.IntLiteralContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitIntLiteral(MxParser.IntLiteralContext ctx) { }
+	@Override public void exitNullLiteralExpr(MxParser.NullLiteralExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -383,30 +335,6 @@ public class MxBaseListener implements MxListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitBinaryExpr(MxParser.BinaryExprContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterStringParseIntMethod(MxParser.StringParseIntMethodContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitStringParseIntMethod(MxParser.StringParseIntMethodContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterTrueLiteral(MxParser.TrueLiteralContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitTrueLiteral(MxParser.TrueLiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -436,18 +364,6 @@ public class MxBaseListener implements MxListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFalseLiteral(MxParser.FalseLiteralContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFalseLiteral(MxParser.FalseLiteralContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterTernaryExpr(MxParser.TernaryExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -460,37 +376,13 @@ public class MxBaseListener implements MxListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStringLiteral(MxParser.StringLiteralContext ctx) { }
+	@Override public void enterIntLiteralExpr(MxParser.IntLiteralExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitStringLiteral(MxParser.StringLiteralContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterStringSubstringMethod(MxParser.StringSubstringMethodContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitStringSubstringMethod(MxParser.StringSubstringMethodContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterStringLengthMethod(MxParser.StringLengthMethodContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitStringLengthMethod(MxParser.StringLengthMethodContext ctx) { }
+	@Override public void exitIntLiteralExpr(MxParser.IntLiteralExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -527,6 +419,18 @@ public class MxBaseListener implements MxListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitArrayLiteralExpr(MxParser.ArrayLiteralExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterBoolLiteralExpr(MxParser.BoolLiteralExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBoolLiteralExpr(MxParser.BoolLiteralExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -580,6 +484,18 @@ public class MxBaseListener implements MxListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterArrayCreatorWithLiteral(MxParser.ArrayCreatorWithLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitArrayCreatorWithLiteral(MxParser.ArrayCreatorWithLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterArrayLiteral(MxParser.ArrayLiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -587,6 +503,18 @@ public class MxBaseListener implements MxListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitArrayLiteral(MxParser.ArrayLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterBoolLiteral(MxParser.BoolLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBoolLiteral(MxParser.BoolLiteralContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

@@ -1,92 +1,115 @@
-// Generated from ./src/Parser/Mx.g4 by ANTLR 4.7.2
-package parser;
-import org.antlr.v4.runtime.tree.ParseTreeVisitor;
+package Frontend;
 
-/**
- * This interface defines a complete generic visitor for a parse tree produced
- * by {@link MxParser}.
- *
- * @param <T> The return type of the visit operation. Use {@link Void} for
- * operations with no return type.
- */
-public interface MxVisitor<T> extends ParseTreeVisitor<T> {
-	/**
-	 * Visit a parse tree produced by {@link MxParser#program}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitProgram(MxParser.ProgramContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link MxParser#singleVarDef}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSingleVarDef(MxParser.SingleVarDefContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link MxParser#varDef}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitVarDef(MxParser.VarDefContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link MxParser#classDef}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitClassDef(MxParser.ClassDefContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link MxParser#parameterList}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitParameterList(MxParser.ParameterListContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link MxParser#argList}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitArgList(MxParser.ArgListContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code normalFunction}
-	 * labeled alternative in {@link MxParser#function}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitNormalFunction(MxParser.NormalFunctionContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code constructFunction}
-	 * labeled alternative in {@link MxParser#function}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitConstructFunction(MxParser.ConstructFunctionContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link MxParser#suite}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSuite(MxParser.SuiteContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code blockStmt}
-	 * labeled alternative in {@link MxParser#statement}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBlockStmt(MxParser.BlockStmtContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code varDefStmt}
-	 * labeled alternative in {@link MxParser#statement}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
+import AST.*;
+import parser.MxBaseVisitor;
+import parser.MxParser;
+import Util.Type;
+import Util.position;
+import org.antlr.v4.runtime.ParserRuleContext;
+
+public class ASTBuilder extends MxBaseVisitor<ASTNode> {
+
+	@Override public ASTNode visitProgram(MxParser.ProgramContext ctx) {
+        position pos = new position(ctx);
+        ArrayList<ClassDefNode> classDefs = new ArrayList<>();
+        ArrayList<StmtNode> stmts = new ArrayList<>();
+        ArrayList<FuncNode> funcs = new ArrayList<>();
+        for (var classDef : ctx.classDef()) {
+            ClassDefNode classDefNode = (ClassDefNode)visit(classDef);
+            classDefs.add(classDefNode);
+        }
+        for (var stmt : ctx.statement()) {
+            StmtNode stmtNode = (ClassDefNode)visit(stmt);
+            stmts.add(stmtNode);
+        }
+        for (var func : ctx.function()) {
+            FuncNode funcNode = (funcNode)visit(func);
+            funcs.add(funcNode); 
+        }
+        return new RootNode(pos, classDefs, funcs, stmts);
+
+    }
+
+	@Override public ASTNode visitSingleVarDef(MxParser.SingleVarDefContext ctx) {
+        position pos = new position(ctx);
+        String identifier = ctx.Identifier().getText();
+        ExprNode initEpxr = (ExprNode) visit(ctx.expression);
+        return new SingleVarDefNode(pos, identifier, initExpr);
+    }
+
+	@Override public ASTNode visitVarDef(MxParser.VarDefContext ctx) {
+		Type type;
+		TypeContext typeContext = ctx.type();
+		if (typeContext.Int() != null) {
+			type = new Type("int");
+		} else if (typeContext.Void() != null) {
+			type = new Type("void");
+		} else if (typeContext.Bool() != null) {
+			type = new Type("bool");
+		} else if (typeContext.String() != null) {
+			type = new Type("string")
+		} else if (typeContext.Identifier() != null) {
+			type = new Type(typeContext.Identifier().getText())
+		} else {
+			TypeContext basicTypeContext = typeContext.type();
+			int bracketCount = len(typeContext.LeftBracket());
+			if (basicTypeContext.Int() != null) {
+				type = new Type("int", bracketCount);
+			} else if (basicTypeContext.Void() != null) {
+				type = new Type("void", bracketCount);
+			} else if (basicTypeContext.Bool() != null) {
+				type = new Type("bool", bracketCount);
+			} else if (basicTypeContext.String() != null) {
+				type = new Type("string", bracketCount);
+			} else (basicTypeContext.Identifier() != null) {
+				type = new Type(basicTypeContext.Identifier().getText(), bracketCount);
+			}
+		}
+
+		
+	}
+
+	@Override public ASTNode visitClassDef(MxParser.ClassDefContext ctx);
+
+	@Override public ASTNode visitParameterList(MxParser.ParameterListContext ctx);
+
+	@Override public ASTNode visitArgList(MxParser.ArgListContext ctx) {
+        position pos = new position(ctx);
+        ArrayList<ExprNode> exprs = new ArrayList<> ();
+        for (var expr : ctx.expression()) {
+            ExprNode exprNode = (ExprNode) visit(expr);
+            exprs.add(exprNode);
+        }
+        return new ArgListNode(pos, exprs);
+    }
+
+	@Override public ASTNode visitNormalFunction(MxParser.NormalFunctionContext ctx);
+
+	@Override public ASTNode visitConstructFunction(MxParser.ConstructFunctionContext ctx);
+
+	T visitSuite(MxParser.SuiteContext ctx) {
+        position pos = new position(ctx);
+        ArrayList<StmtNode> stmts = new ArrayList<> ();
+        for (var stmt : ctx.statement()) {
+            StmtNode stmtNode = (StmtNode) visit(stmt);
+            stmts.add(StmtNode);
+        }
+        return new BlockStmtNode(pos, stmts);
+    }
+
+	T visitBlockStmt(MxParser.BlockStmtContext ctx) {
+        return visit(ctx.suite());
+    }
+
 	T visitVarDefStmt(MxParser.VarDefStmtContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code ifStmt}
-	 * labeled alternative in {@link MxParser#statement}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitIfStmt(MxParser.IfStmtContext ctx);
+
+	T visitIfStmt(MxParser.IfStmtContext ctx) {
+        position pos = new position(ctx);
+        StmtNode trueStmtNode = (StmtNode) visit(ctx.trueStmt);
+        StmtNode falseStmtNode = (StmtNode) visit(ctx.falseStmt);
+        ExprNode conditionNode = (ExprNode) visit(ctx.expression());
+        return new IfStmtNode(pos, conditionNode, trueStmtNode, falseStmtNode);
+    }
 	/**
 	 * Visit a parse tree produced by the {@code forStmt}
 	 * labeled alternative in {@link MxParser#statement}.

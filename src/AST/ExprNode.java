@@ -1,5 +1,6 @@
 package AST;
 
+import Utils.Type;
 import Utils.position;
 
 public class ExprNode extends ASTNode {
@@ -10,4 +11,4 @@ public class ExprNode extends ASTNode {
         super(pos);
         this.is_left_value = is_left_value;
     }
-}s
+}

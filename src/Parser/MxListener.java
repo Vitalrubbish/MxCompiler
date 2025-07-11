@@ -1,4 +1,4 @@
-// Generated from Mx.g4 by ANTLR 4.7.2
+// Generated from ./src/Parser/Mx.g4 by ANTLR 4.7.2
 package parser;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -17,6 +17,16 @@ public interface MxListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitProgram(MxParser.ProgramContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MxParser#singleVarDef}.
+	 * @param ctx the parse tree
+	 */
+	void enterSingleVarDef(MxParser.SingleVarDefContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MxParser#singleVarDef}.
+	 * @param ctx the parse tree
+	 */
+	void exitSingleVarDef(MxParser.SingleVarDefContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MxParser#varDef}.
 	 * @param ctx the parse tree
@@ -212,65 +222,25 @@ public interface MxListener extends ParseTreeListener {
 	 */
 	void exitPureStmt(MxParser.PureStmtContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code intType}
-	 * labeled alternative in {@link MxParser#type}.
+	 * Enter a parse tree produced by {@link MxParser#basicType}.
 	 * @param ctx the parse tree
 	 */
-	void enterIntType(MxParser.IntTypeContext ctx);
+	void enterBasicType(MxParser.BasicTypeContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code intType}
-	 * labeled alternative in {@link MxParser#type}.
+	 * Exit a parse tree produced by {@link MxParser#basicType}.
 	 * @param ctx the parse tree
 	 */
-	void exitIntType(MxParser.IntTypeContext ctx);
+	void exitBasicType(MxParser.BasicTypeContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code boolType}
-	 * labeled alternative in {@link MxParser#type}.
+	 * Enter a parse tree produced by {@link MxParser#type}.
 	 * @param ctx the parse tree
 	 */
-	void enterBoolType(MxParser.BoolTypeContext ctx);
+	void enterType(MxParser.TypeContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code boolType}
-	 * labeled alternative in {@link MxParser#type}.
+	 * Exit a parse tree produced by {@link MxParser#type}.
 	 * @param ctx the parse tree
 	 */
-	void exitBoolType(MxParser.BoolTypeContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code VoidType}
-	 * labeled alternative in {@link MxParser#type}.
-	 * @param ctx the parse tree
-	 */
-	void enterVoidType(MxParser.VoidTypeContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code VoidType}
-	 * labeled alternative in {@link MxParser#type}.
-	 * @param ctx the parse tree
-	 */
-	void exitVoidType(MxParser.VoidTypeContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code StringType}
-	 * labeled alternative in {@link MxParser#type}.
-	 * @param ctx the parse tree
-	 */
-	void enterStringType(MxParser.StringTypeContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code StringType}
-	 * labeled alternative in {@link MxParser#type}.
-	 * @param ctx the parse tree
-	 */
-	void exitStringType(MxParser.StringTypeContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code ClassType}
-	 * labeled alternative in {@link MxParser#type}.
-	 * @param ctx the parse tree
-	 */
-	void enterClassType(MxParser.ClassTypeContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code ClassType}
-	 * labeled alternative in {@link MxParser#type}.
-	 * @param ctx the parse tree
-	 */
-	void exitClassType(MxParser.ClassTypeContext ctx);
+	void exitType(MxParser.TypeContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code newExpr}
 	 * labeled alternative in {@link MxParser#expression}.
@@ -308,53 +278,29 @@ public interface MxListener extends ParseTreeListener {
 	 */
 	void exitMemberAccess(MxParser.MemberAccessContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code nullLiteral}
+	 * Enter a parse tree produced by the {@code stringLiteralExpr}
 	 * labeled alternative in {@link MxParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void enterNullLiteral(MxParser.NullLiteralContext ctx);
+	void enterStringLiteralExpr(MxParser.StringLiteralExprContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code nullLiteral}
+	 * Exit a parse tree produced by the {@code stringLiteralExpr}
 	 * labeled alternative in {@link MxParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void exitNullLiteral(MxParser.NullLiteralContext ctx);
+	void exitStringLiteralExpr(MxParser.StringLiteralExprContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code arraySizeMethod}
+	 * Enter a parse tree produced by the {@code nullLiteralExpr}
 	 * labeled alternative in {@link MxParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void enterArraySizeMethod(MxParser.ArraySizeMethodContext ctx);
+	void enterNullLiteralExpr(MxParser.NullLiteralExprContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code arraySizeMethod}
+	 * Exit a parse tree produced by the {@code nullLiteralExpr}
 	 * labeled alternative in {@link MxParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void exitArraySizeMethod(MxParser.ArraySizeMethodContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code stringOrdMethod}
-	 * labeled alternative in {@link MxParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterStringOrdMethod(MxParser.StringOrdMethodContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code stringOrdMethod}
-	 * labeled alternative in {@link MxParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitStringOrdMethod(MxParser.StringOrdMethodContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code intLiteral}
-	 * labeled alternative in {@link MxParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterIntLiteral(MxParser.IntLiteralContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code intLiteral}
-	 * labeled alternative in {@link MxParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitIntLiteral(MxParser.IntLiteralContext ctx);
+	void exitNullLiteralExpr(MxParser.NullLiteralExprContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code binaryExpr}
 	 * labeled alternative in {@link MxParser#expression}.
@@ -367,30 +313,6 @@ public interface MxListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitBinaryExpr(MxParser.BinaryExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code stringParseIntMethod}
-	 * labeled alternative in {@link MxParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterStringParseIntMethod(MxParser.StringParseIntMethodContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code stringParseIntMethod}
-	 * labeled alternative in {@link MxParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitStringParseIntMethod(MxParser.StringParseIntMethodContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code trueLiteral}
-	 * labeled alternative in {@link MxParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterTrueLiteral(MxParser.TrueLiteralContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code trueLiteral}
-	 * labeled alternative in {@link MxParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitTrueLiteral(MxParser.TrueLiteralContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code parenExpr}
 	 * labeled alternative in {@link MxParser#expression}.
@@ -416,18 +338,6 @@ public interface MxListener extends ParseTreeListener {
 	 */
 	void exitUnaryExpr(MxParser.UnaryExprContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code falseLiteral}
-	 * labeled alternative in {@link MxParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterFalseLiteral(MxParser.FalseLiteralContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code falseLiteral}
-	 * labeled alternative in {@link MxParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitFalseLiteral(MxParser.FalseLiteralContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code ternaryExpr}
 	 * labeled alternative in {@link MxParser#expression}.
 	 * @param ctx the parse tree
@@ -440,41 +350,17 @@ public interface MxListener extends ParseTreeListener {
 	 */
 	void exitTernaryExpr(MxParser.TernaryExprContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code stringLiteral}
+	 * Enter a parse tree produced by the {@code intLiteralExpr}
 	 * labeled alternative in {@link MxParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void enterStringLiteral(MxParser.StringLiteralContext ctx);
+	void enterIntLiteralExpr(MxParser.IntLiteralExprContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code stringLiteral}
+	 * Exit a parse tree produced by the {@code intLiteralExpr}
 	 * labeled alternative in {@link MxParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void exitStringLiteral(MxParser.StringLiteralContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code stringSubstringMethod}
-	 * labeled alternative in {@link MxParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterStringSubstringMethod(MxParser.StringSubstringMethodContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code stringSubstringMethod}
-	 * labeled alternative in {@link MxParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitStringSubstringMethod(MxParser.StringSubstringMethodContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code stringLengthMethod}
-	 * labeled alternative in {@link MxParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterStringLengthMethod(MxParser.StringLengthMethodContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code stringLengthMethod}
-	 * labeled alternative in {@link MxParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitStringLengthMethod(MxParser.StringLengthMethodContext ctx);
+	void exitIntLiteralExpr(MxParser.IntLiteralExprContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code arrayAccess}
 	 * labeled alternative in {@link MxParser#expression}.
@@ -511,6 +397,18 @@ public interface MxListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitArrayLiteralExpr(MxParser.ArrayLiteralExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code boolLiteralExpr}
+	 * labeled alternative in {@link MxParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterBoolLiteralExpr(MxParser.BoolLiteralExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code boolLiteralExpr}
+	 * labeled alternative in {@link MxParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitBoolLiteralExpr(MxParser.BoolLiteralExprContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code assignExpr}
 	 * labeled alternative in {@link MxParser#expression}.
@@ -560,6 +458,18 @@ public interface MxListener extends ParseTreeListener {
 	 */
 	void exitClassCreator(MxParser.ClassCreatorContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code arrayCreatorWithLiteral}
+	 * labeled alternative in {@link MxParser#creator}.
+	 * @param ctx the parse tree
+	 */
+	void enterArrayCreatorWithLiteral(MxParser.ArrayCreatorWithLiteralContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code arrayCreatorWithLiteral}
+	 * labeled alternative in {@link MxParser#creator}.
+	 * @param ctx the parse tree
+	 */
+	void exitArrayCreatorWithLiteral(MxParser.ArrayCreatorWithLiteralContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MxParser#arrayLiteral}.
 	 * @param ctx the parse tree
 	 */
@@ -569,4 +479,14 @@ public interface MxListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitArrayLiteral(MxParser.ArrayLiteralContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MxParser#boolLiteral}.
+	 * @param ctx the parse tree
+	 */
+	void enterBoolLiteral(MxParser.BoolLiteralContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MxParser#boolLiteral}.
+	 * @param ctx the parse tree
+	 */
+	void exitBoolLiteral(MxParser.BoolLiteralContext ctx);
 }

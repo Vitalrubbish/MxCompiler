@@ -1,13 +1,11 @@
 package AST;
 
 import Utils.position;
-import Utils.Type;
 
-public class TypeNode extends ASTNode {
+public class ClassCreatorNode extends creatorNode {
     public Type type;
-
-    public TypeNode(position pos, Type type) {
-        super(pos);
+    
+    public ClassCreatorNode(position pos, Type type) {
         this.type = type;
     }
 

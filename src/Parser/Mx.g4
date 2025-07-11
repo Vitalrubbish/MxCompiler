@@ -2,23 +2,23 @@ grammar Mx;
 
 program: (classDef|function|statement)+ EOF ;
 
-varDef:
+singleVarDef : Identifier ('=' expression)? ;
 
-    type Identifier ('=' expression)? (',' type Identifier ('=' expression)?)* ';' ;
+varDef : type singleVarDef (',' singleVarDef)* ';' ;
 
-classDef:
+classDef :
 
     'class' Identifier '{' ( varDef | function )* '}' ';' ;
 
 parameterList : type Identifier (',' type Identifier)* ;
 
-argList : Identifier (',' Identifier)* ;
+argList : expression (',' expression)* ;
 
 function
 
-    : type Identifier '(' parameterList? ')' '{' ( statement | expression )* '}'  #normalFunction
+    : type Identifier '(' parameterList? ')' suite                 #normalFunction
     
-    | Identifier '(' ')' '{'  ( statement | expression ) '}'       #constructFunction
+    | Identifier '(' ')' suite                                     #constructFunction
 
     ;
 
@@ -33,10 +33,10 @@ statement
     | If '(' expression ')' trueStmt = statement
       (Else falseStmt = statement)?                                #ifStmt
     
-    | For '(' initialStmt = statement ';' forConditionExpression = expression ';' stepExpression = expression ')' 
-      '{' ( trueStmt = statement | trueExpr = expression ) '}'     #forStmt
+    | For '(' initialStmt = statement  forConditionExpr = expression ';' stepExpr = expression ')' 
+              trueStmt = statement                                 #forStmt
 
-    | While '(' conditionExpr = expression ')' statement           #whileStmt
+    | While '(' conditionExpr = expression ')' trueStmt = statement           #whileStmt
 
     | Break                                                        #breakStmt
 
@@ -50,19 +50,19 @@ statement
     
     ;
 
-type
+basicType
 
-    : Int                                                          #intType
+    : Int                                                          
 
-    | Bool                                                         #boolType
+    | Bool                                                                                                             
 
-    | Void                                                         #VoidType
+    | String                                                       
 
-    | String                                                       #StringType
+    | Identifier
 
-    | Identifier                                                   #ClassType
-    
     ;
+
+type : basicType ('[' ']')* | Void ;
 
 expression
 
@@ -124,17 +124,7 @@ expression
 
     | expression '.' Identifier                                        #memberAccess
 
-    | expression '.' 'size' '(' ')'                                    #arraySizeMethod
-
-    | expression '.' 'length' '(' ')'                                  #stringLengthMethod
-
-    | expression '.' 'substring' '(' expression ',' expression ')'     #stringSubstringMethod
-
-    | expression '.' 'parseInt' '(' ')'                                #stringParseIntMethod
-
-    | expression '.' 'ord' '(' expression ')'                          #stringOrdMethod
-
-    | expression '(' argList? ')'                                #funcCall
+    | expression '(' argList? ')'                                      #funcCall
 
     | 'new' creator                                                    #newExpr
 
@@ -146,29 +136,27 @@ expression
 
     | Identifier                                                       #identifierExpr
 
-    | DecimalInteger                                                   #intLiteral
+    | DecimalInteger                                                   #intLiteralExpr
 
-    | StringLiteral                                                    #stringLiteral
+    | StringLiteral                                                    #stringLiteralExpr
 
-    | 'true'                                                           #trueLiteral
+    | arrayLiteral                                                     #arrayLiteralExpr
 
-    | 'false'                                                          #falseLiteral
+    | boolLiteral                                                      #boolLiteralExpr
 
-    | 'null'                                                           #nullLiteral
+    | 'null'                                                           #nullLiteralExpr
 
     ;
 
 creator
 
-    : type ('[' expression ']')+ ('[' ']')*                          #arrayCreator
+    : basicType ('[' expression ']')+ ('[' ']')*                       #arrayCreator
 
-    | type '(' ')'                                                   #classCreator
+    | basicType '(' ')'                                                #classCreator
     
+    | type arrayLiteral                                             #arrayCreatorWithLiteral
+
     ;
-
-arrayLiteral : '{' (expression (',' expression)*)? '}' ;
-
-StringLiteral : '"' ( ~["\\] | '\\' .)* '"' ;
 
 True : 'true';
 
@@ -262,12 +250,6 @@ Equal : '==';
 
 NotEqual : '!=';
 
-Identifier
-
-    : [a-zA-Z] [a-zA-Z_0-9]*
-
-    ;
-
 DecimalInteger
 
     : [1-9] [0-9]*
@@ -275,6 +257,28 @@ DecimalInteger
     | '0'
 
     ;
+
+Identifier
+
+    : [a-zA-Z] [a-zA-Z_0-9]*
+
+    ;
+
+arrayLiteral
+
+    : '{' (expression (',' expression)*)? '}' 
+    
+    ;
+
+boolLiteral
+
+    : True
+
+    | False
+
+    ;
+
+StringLiteral : '"' ( ~["\\] | '\\' .)* '"' ;
 
 Whitespace
 

@@ -8,7 +8,7 @@ public class RootNode extends ASTNode {
     public ArrayList<NormalFuncDefNode> funcDefs = new ArrayList<>();
     public ArrayList<VarDefExprNode> globalVarDefs = new ArrayList<>();
 
-    public RootNode(position pos, ArrayList<ClassDefNode> classDefs, ArrayList<NormalFuncDefNode> funcDefs, ArrayList<VarDefExprNode> globalVarDefs) {
+    public RootNode(position pos, ArrayList<ClassDefNode> classDefs, ArrayList<FuncDefNode> funcDefs, ArrayList<StmtNode> globalVarDefs) {
         super(pos)
         this.classDefs = classDefs;
         this.funcDefs = funcDefs;

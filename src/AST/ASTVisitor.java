@@ -1,46 +1,42 @@
-package ast;
+package AST;
 
-public interface ASTVisitor<T> {
-    T visit(RootNode node);
-    
-    // Declarations
-    T visit(ClassDefNode node);
-    T visit(NormalFuncDefNode node);
-    T visit(ConstructorDefNode node);
-    T visit(ParameterNode node);
-    
-    // Statements
-    T visit(VarDefStmtNode node);
-    T visit(IfStmtNode node);
-    T visit(ForStmtNode node);
-    T visit(WhileStmtNode node);
-    T visit(BreakStmtNode node);
-    T visit(ContinueStmtNode node);
-    T visit(ReturnStmtNode node);
-    T visit(BlockStmtNode node);
-    T visit(ExprStmtNode node);
-    
-    // Expressions
-    T visit(BinaryExprNode node);
-    T visit(UnaryExprNode node);
-    T visit(AssignExprNode node);
-    T visit(TernaryExprNode node);
-    T visit(MemberAccessExprNode node);
-    T visit(ArrayAccessExprNode node);
-    T visit(FunctionCallExprNode node);
-    T visit(NewExprNode node);
-    T visit(ArrayLiteralExprNode node);
-    T visit(IdentifierExprNode node);
-    
-    // Literals
-    T visit(IntLiteralExprNode node);
-    T visit(BoolLiteralExprNode node);
-    T visit(StringLiteralExprNode node);
-    T visit(NullLiteralExprNode node);
-    T visit(ThisExprNode node);
-    
-    // Types
-    T visit(BuiltInTypeNode node);
-    T visit(ClassTypeNode node);
-    T visit(ArrayTypeNode node);
+public interface ASTVisitor {
+
+    void visit(RootNode node);
+
+    void visit(ClassDefNode node);
+    void visit(NormalFuncDefNode node);
+    void visit(ConstructorDefNode node);
+    void visit(ArgListNode node);
+    void visit(ParameterNode node);
+    void visit(SingleVarDefNode node);
+    void visit(TypeNode node);
+
+    void visit(VarDefStmtNode node);
+    void visit(IfStmtNode node);
+    void visit(ForStmtNode node);
+    void visit(WhileStmtNode node);
+    void visit(BreakStmtNode node);
+    void visit(ContinueStmtNode node);
+    void visit(ReturnStmtNode node);
+    void visit(BlockStmtNode node);
+    void visit(ExprStmtNode node);
+
+    void visit(BinaryExprNode node);
+    void visit(UnaryExprNode node);
+    void visit(AssignExprNode node);
+    void visit(TernaryExprNode node);
+    void visit(MemberAccessExprNode node);
+    void visit(ArrayAccessExprNode node);
+    void visit(FunctionCallExprNode node);
+    void visit(NewExprNode node);
+    void visit(ArrayLiteralExprNode node);
+    void visit(IdentifierExprNode node);
+    void visit(ParenExprNode node);
+
+    void visit(IntLiteralExprNode node);
+    void visit(BoolLiteralExprNode node);
+    void visit(StringLiteralExprNode node);
+    void visit(NullLiteralExprNode node);
+    void visit(ThisExprNode node);
 }

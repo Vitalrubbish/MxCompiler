@@ -2,11 +2,10 @@ package AST;
 
 import Utils.position;
 
-public class ReturnStmtNode extends StmtNode {
+public class ParenExprNode extends ExprNode {
     public ExprNode expr;
 
-    public ReturnStmtNode(position pos, ExprNode expr) {
-        super(pos);
+    public ParenExprNode(position pos, ExprNode expr) {
         this.expr = expr;
     }
 
